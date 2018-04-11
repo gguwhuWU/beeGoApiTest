@@ -50,6 +50,31 @@ func init() {
 		),
 	)
 
+	// bookNs := beego.NewNamespace("/bookshop",
+	// 	beego.NSNamespace("/book",
+	// 		beego.NSRouter("/", &controllers.BookController{}, "get:GetAll"),
+	// 		beego.NSRouter("/", &controllers.BookController{}, "post:PostNewBook"),
+	// 		beego.NSRouter("/:bookId", &controllers.BookController{}, "get:Get"),
+	// 		beego.NSRouter("/:bookId", &controllers.BookController{}, "delete:DelBookById"),
+	// 		beego.NSRouter("/:bookId", &controllers.BookController{}, "put:UpBookById"),
+	// 	),
+	// 	beego.NSNamespace("/author"),
+	// 	beego.NSNamespace("/publish"),
+	// 	beego.NSNamespace("/taxonomy"),
+	// )
+
+	authorNs := beego.NewNamespace("/bookshop",
+		beego.NSNamespace("/author",
+			beego.NSRouter("/", &controllers.AuthorController{}, "get:GetAll"),
+			beego.NSRouter("/", &controllers.AuthorController{}, "post:PostNewAuthor"),
+			beego.NSRouter("/:authorId", &controllers.AuthorController{}, "get:Get"),
+			beego.NSRouter("/:authorId", &controllers.AuthorController{}, "delete:DelAuthorById"),
+			beego.NSRouter("/:authorId", &controllers.AuthorController{}, "put:UpAuthorById"),
+		),
+	)
+
 	beego.AddNamespace(ns)
 	beego.AddNamespace(schoolNs)
+	beego.AddNamespace(authorNs)
+	//beego.AddNamespace(bookNs)
 }
